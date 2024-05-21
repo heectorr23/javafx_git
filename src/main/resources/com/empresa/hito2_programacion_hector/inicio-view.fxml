@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="665.0" prefWidth="967.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.empresa.hito2_programacion_hector.LoginController">
+    <left>
+        <AnchorPane prefHeight="633.0" prefWidth="297.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+            <children>
+                <Circle fill="WHITE" layoutX="149.0" layoutY="306.0" radius="116.0" stroke="BLACK" strokeType="INSIDE" />
+                <Label layoutX="45.0" layoutY="264.0" text="Mécanico MANOLO">
+                    <font>
+                        <Font name="Bell MT" size="24.0" />
+                    </font>
+                </Label>
+                <Line endX="108.0" layoutX="137.0" layoutY="306.0" startX="-86.0" />
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="48.0" layoutY="279.0" pickOnBounds="true">
+                    <image>
+                        <Image url="@../../../img/11874.png" />
+                    </image>
+                </ImageView>
+            <Label layoutX="22.0" layoutY="598.0" text="Realizado por Héctor Olivera © ">
+               <font>
+                  <Font name="Bell MT Bold" size="18.0" />
+               </font>
+            </Label>
+            </children>
+        </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane prefHeight="665.0" prefWidth="97.0" BorderPane.alignment="CENTER" />
+    </right>
+    <center>
+        <AnchorPane prefHeight="665.0" prefWidth="667.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="111.0" layoutY="120.0" text="Bienvenidos a la Pagina Principal de la APP">
+                    <font>
+                        <Font name="Bell MT Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Button fx:id="registerButtonInicio" layoutX="111.0" layoutY="464.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="95.0" text="Registrarse">
+               <font>
+                  <Font name="Bell MT" size="12.0" />
+               </font></Button>
+                <Button fx:id="loginButton" layoutX="267.0" layoutY="362.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="103.0" text="Inicia Sesión">
+               <font>
+                  <Font name="Bell MT" size="12.0" />
+               </font></Button>
+                <Label layoutX="269.0" layoutY="180.0" text="Iniciar sesión" underline="true">
+                    <font>
+                        <Font name="Bell MT" size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="usernameField" layoutX="111.0" layoutY="230.0" prefHeight="26.0" prefWidth="218.0" promptText="Nombre:" />
+                <PasswordField fx:id="passwordField" layoutX="111.0" layoutY="307.0" prefHeight="25.0" prefWidth="220.0" promptText="Contraseña:" />
+
+                <Label layoutX="111.0" layoutY="424.0" text="Si no estas registrado, registrate" />
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>

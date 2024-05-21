@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="949.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.empresa.hito2_programacion_hector.CarritoController">
+   <top>
+       <AnchorPane prefHeight="92.0" prefWidth="949.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+           <children>
+               <Label layoutX="354.0" layoutY="23.0" text="Mecánico Manolo">
+                   <font>
+                       <Font name="Bell MT Italic" size="36.0" />
+                   </font>
+               </Label>
+               <Circle fill="WHITE" layoutX="104.0" layoutY="45.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
+               <ImageView fitHeight="71.0" fitWidth="77.0" layoutX="69.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                   <image>
+                       <Image url="@../../../img/11874.png" />
+                   </image>
+               </ImageView>
+               <Label layoutX="744.0" layoutY="58.0" text="Realizado por Héctor Olivera ©">
+                   <font>
+                       <Font name="Bell MT Bold" size="14.0" />
+                   </font>
+               </Label>
+           </children>
+       </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="439.0" layoutY="35.0" text="Carrito">
+               <font>
+                  <Font name="Bell MT" size="24.0" />
+               </font></Label>
+            <Label layoutX="102.0" layoutY="115.0" text="Los productos elegidos son los siguientes:">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+             <TableView fx:id="selectedPiecesTableView" layoutX="78.0" layoutY="144.0" prefHeight="200.0" prefWidth="830.0">
+                 <columns>
+                     <TableColumn fx:id="selectedIdColumn" text="ID" />
+                     <TableColumn fx:id="selectedNameColumn" text="Nombre" />
+                     <TableColumn fx:id="selectedNumeroSerieColumn" text="Número de Serie" />
+                     <TableColumn fx:id="selectedFabricanteColumn" text="Fabricante" />
+                     <TableColumn fx:id="selectedDescripcionColumn" text="Descripción" />
+                     <TableColumn fx:id="selectedMarcaVehiculoColumn" text="Marca del Vehículo" />
+                     <TableColumn fx:id="selectedModeloVehiculoColumn" text="Modelo del Vehículo" />
+                     <TableColumn fx:id="selectedAnoFabricacionColumn" text="Año de Fabricación" />
+                 </columns>
+             </TableView>
+            <Button fx:id="comprarButton" layoutX="775.0" layoutY="452.0" mnemonicParsing="false" text="Comprar">
+               <font>
+                  <Font name="Bell MT" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="atrasButton" layoutX="799.0" layoutY="113.0" mnemonicParsing="false" text="Volver Atrás">
+               <font>
+                  <Font name="Bell MT" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

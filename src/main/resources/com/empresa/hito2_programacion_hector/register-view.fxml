@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.empresa.hito2_programacion_hector.RegisterController">
+   <left>
+      <AnchorPane prefHeight="550.0" prefWidth="226.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+         <children>
+            <Circle fill="WHITE" layoutX="113.0" layoutY="163.0" radius="112.0" stroke="BLACK" strokeType="INSIDE" />
+            <Line endX="100.0" layoutX="108.0" layoutY="163.0" startX="-100.0" />
+            <Label layoutX="18.0" layoutY="124.0" text="Mécanico MANOLO">
+               <font>
+                  <Font name="Bell MT" size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="163.0" layoutX="38.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/11874.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="14.0" layoutY="494.0" text="Realizado por Héctor Olivera © ">
+               <font>
+                  <Font name="Bell MT Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="137.0" layoutY="58.0" text="Estamos en la zona de Registro">
+               <font>
+                  <Font name="Bell MT Bold" size="28.0" />
+               </font>
+            </Label>
+            <Button layoutX="496.0" layoutY="432.0" mnemonicParsing="false" text="Volver Atrás" textAlignment="CENTER" />
+            <TextField fx:id="usernameField" layoutX="76.0" layoutY="159.0" prefHeight="25.0" prefWidth="200.0" promptText="Indica el Nombre:" />
+            <TextField fx:id="emailField" layoutX="76.0" layoutY="200.0" prefHeight="25.0" prefWidth="200.0" promptText="Indica un correo:" />
+            <TextField fx:id="passwordField" layoutX="76.0" layoutY="232.0" prefHeight="25.0" prefWidth="200.0" promptText="Indica una contraseña:" />
+            <Button fx:id="registerButtonRegister" layoutX="76.0" layoutY="330.0" mnemonicParsing="false" text="Registrarse" />
+            <Button fx:id="backButtonRegister" layoutX="496.0" layoutY="432.0" mnemonicParsing="false" text="Volver Atrás" textAlignment="CENTER" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
