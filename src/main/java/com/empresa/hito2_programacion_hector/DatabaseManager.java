@@ -5,6 +5,10 @@ import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,26 +35,39 @@ public class DatabaseManager {
     public void registerUser(String username, String email, String password) {
         Document newUser = new Document("nombre", username)
                 .append("email", email)
-                .append("contraseña", password);
+                .append("contraseña", password); // No se aplica hash a la contraseña
         usersCollection.insertOne(newUser);
     }
 
     public boolean verifyCredentials(String username, String password) {
-        Document query = new Document("nombre", username)
-                .append("contraseña", password);
-        boolean isValid = usersCollection.countDocuments(Filters.and(Filters.eq("nombre", username), Filters.eq("contraseña", password))) > 0;
-
-        if (!isValid) {
-            System.out.println("Error: Las credenciales proporcionadas no son válidas.");
-        } else {
-            Document loginRecord = new Document("nombre", username)
-                    .append("loginTime", new Date());
-            usersCollection.insertOne(loginRecord);
+        FindIterable<Document> allDocs = usersCollection.find();
+        for (Document doc : allDocs) {
+            System.out.println(doc.toJson());
         }
 
-        return isValid;
+        Document userDoc = usersCollection.find(new Document("nombre", new Document("$regex", username).append("$options", "i"))).first();
+        System.out.println("Resultado de la consulta a la base de datos: " + userDoc);
+        if (userDoc != null) {
+            String storedPassword = userDoc.getString("contraseña");
+            // No se aplica hash a la contraseña, se compara directamente
+            return storedPassword.equals(password);
+        }
+        return false;
     }
-
+    private String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(password.getBytes(StandardCharsets.UTF_8));
+            BigInteger number = new BigInteger(1, hash);
+            StringBuilder hexString = new StringBuilder(number.toString(16));
+            while (hexString.length() < 32) {
+                hexString.insert(0, '0');
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public List<Pieza> getAllPieces() {
         List<Pieza> pieces = new ArrayList<>();
         FindIterable<Document> findIterable = piecesCollection.find();

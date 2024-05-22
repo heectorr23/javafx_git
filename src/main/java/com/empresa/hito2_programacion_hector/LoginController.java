@@ -25,15 +25,15 @@ public class LoginController {
     @FXML
     private Button registerButtonInicio;
 
-    private DatabaseManagerApp dbManager; // Cambiado a DatabaseManagerApp
+    private DatabaseManager dbManager; // Cambiado a DatabaseManagerApp
 
     public LoginController() {
-        dbManager = new DatabaseManagerApp(); // Cambiado a DatabaseManagerApp
+        dbManager = new DatabaseManager(); // Cambiado a DatabaseManagerApp
     }
 
     public void initialize() {
         registerButtonInicio.setOnAction(event -> switchToRegisterView());
-        loginButton.setOnAction(event -> verifyCredentials());
+        loginButton.setOnAction(event -> handleLogin()); // Cambiado a handleLogin
     }
 
     private void switchToRegisterView() {
@@ -47,7 +47,8 @@ public class LoginController {
             e.printStackTrace();
         }
     }
-    private void verifyCredentials() {
+
+    private void handleLogin() { // Cambiado de verifyCredentials a handleLogin
         String username = usernameField.getText();
         String password = passwordField.getText();
 
@@ -63,18 +64,14 @@ public class LoginController {
                 Stage stage = (Stage) loginButton.getScene().getWindow();
                 stage.setScene(new Scene(root));
             } catch (IOException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Diálogo de Error");
-                alert.setHeaderText("Fallo en la Navegación");
-                alert.setContentText("¡No se puede navegar a la página principal!");
-                alert.showAndWait();
+                e.printStackTrace();
             }
         } else {
             // Handle failed login
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Diálogo de Error");
-            alert.setHeaderText("Fallo en el Inicio de Sesión");
-            alert.setContentText("¡Nombre de usuario o contraseña inválidos!");
+            alert.setTitle("Error de inicio de sesión");
+            alert.setHeaderText(null);
+            alert.setContentText("Las credenciales proporcionadas son incorrectas. Por favor, inténtalo de nuevo.");
             alert.showAndWait();
         }
     }
