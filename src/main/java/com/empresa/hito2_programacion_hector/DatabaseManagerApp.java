@@ -28,6 +28,8 @@ public class DatabaseManagerApp {
         database = mongoClient.getDatabase(DATABASE_NAME);
         usersCollection = database.getCollection(USERS_COLLECTION);
         piecesCollection = database.getCollection(PIECES_COLLECTION);
+
+        System.out.println("Conexión a la base de datos establecida correctamente.");
     }
 
     public void registerUser(String username, String email, String password) {
@@ -39,10 +41,17 @@ public class DatabaseManagerApp {
     }
 
     public boolean verifyCredentials(String username, String password) {
-        Document userDoc = usersCollection.find(new Document("nombre", username)).first();
+        FindIterable<Document> allDocs = usersCollection.find();
+        for (Document doc : allDocs) {
+            System.out.println(doc.toJson());
+        }
+
+        Document userDoc = usersCollection.find(new Document("nombre", new Document("$regex", username).append("$options", "i"))).first();
+        System.out.println("Resultado de la consulta a la base de datos: " + userDoc);
         if (userDoc != null) {
             String storedPassword = userDoc.getString("contraseña");
             String hashedPassword = hashPassword(password);
+            System.out.println("Contraseña en hash: " + hashedPassword);
             return storedPassword.equals(hashedPassword);
         }
         return false;

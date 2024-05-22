@@ -17,8 +17,6 @@ import java.util.Objects;
 
 public class AppController {
     @FXML
-    private Button showPiecesButton;
-    @FXML
     private Button enviarCarritoButton;
     @FXML
     private TextArea piezasTextArea;
@@ -61,7 +59,6 @@ public class AppController {
         marcaVehiculoColumn.setCellValueFactory(new PropertyValueFactory<>("marcaVehiculo"));
         modeloVehiculoColumn.setCellValueFactory(new PropertyValueFactory<>("modeloVehiculo"));
         anoFabricacionColumn.setCellValueFactory(new PropertyValueFactory<>("ano_fabricacion"));
-        showPiecesButton.setOnAction(event -> showPieces());
         inicioButton.setOnAction(event -> volverInicio());
         piecesTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         Platform.runLater(this::showPieces);
