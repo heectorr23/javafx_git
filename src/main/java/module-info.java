@@ -12,8 +12,10 @@ module com.empresa.hito2_programacion_hector {
     requires kaptcha;
     requires java.desktop;
     requires javafx.swing;
-
+    requires org.mockito;
+    requires junit;
 
     opens com.empresa.hito2_programacion_hector to javafx.fxml;
     exports com.empresa.hito2_programacion_hector;
+    opens test to junit;
 }

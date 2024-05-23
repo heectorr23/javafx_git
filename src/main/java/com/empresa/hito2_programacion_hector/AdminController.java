@@ -4,10 +4,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.GridPane;
+
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -33,19 +39,20 @@ public class AdminController {
     private TableColumn<Pieza, String> adminMarcaVehiculoColumn;
     @FXML
     private TableColumn<Pieza, String> adminModeloVehiculoColumn;
-    @FXML
-    private TableColumn<Pieza, Integer> adminAnoFabricacionColumn;
+
     @FXML
     private Button buttonModificarPieza;
     @FXML
     private Button buttonEliminarPieza;
     @FXML
     private Button buttonAnadirPieza;
+    @FXML
+    private ImageView imgCuboBasura; // Change ImageView to Pane
 
     private DatabaseManagerApp dbManager;
 
-    public AdminController() {
-        dbManager = new DatabaseManagerApp();
+    public AdminController(DatabaseManagerApp dbManager) {
+        this.dbManager = new DatabaseManagerApp();
     }
 
     @FXML
@@ -62,6 +69,62 @@ public class AdminController {
         buttonAnadirPieza.setOnAction(e -> anadirPieza());
         buttonEliminarPieza.setOnAction(e -> eliminarPieza());
         buttonModificarPieza.setOnAction(e -> modificarPieza());
+
+        // Configurar el comportamiento de arrastrar y soltar para las filas de la tabla
+        adminPiecesTableView.setRowFactory(tv -> {
+            TableRow<Pieza> row = new TableRow<>();
+
+            row.setOnDragDetected(event -> {
+                if (!row.isEmpty()) {
+                    Integer index = row.getIndex();
+                    Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
+                    db.setDragView(row.snapshot(null, null));
+                    ClipboardContent cc = new ClipboardContent();
+                    cc.putString(index.toString());
+                    db.setContent(cc);
+                    event.consume();
+                }
+            });
+
+            row.setOnDragDone(event -> {
+                if (event.getTransferMode() != TransferMode.MOVE) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Por favor, arrastra solo a la imagen del cubo de basura.");
+                    alert.showAndWait();
+                }
+            });
+
+            return row;
+        });
+
+        // Configurar el comportamiento de arrastrar y soltar para imgCuboBasura
+        imgCuboBasura.setOnDragOver(event -> {
+            Dragboard db = event.getDragboard();
+
+            if (db.hasString()) {
+                event.acceptTransferModes(TransferMode.MOVE);
+            }
+
+            event.consume();
+        });
+
+        imgCuboBasura.setOnDragDropped(event -> {
+            Dragboard db = event.getDragboard();
+            boolean success = false;
+
+            if (db.hasString()) {
+                int rowIndex = Integer.parseInt(db.getString());
+                Pieza piece = adminPiecesTableView.getItems().get(rowIndex);
+                dbManager.removePiece(piece.get_id());
+                showPieces();
+                success = true;
+            }
+
+            event.setDropCompleted(success);
+            event.consume();
+        });
     }
     private void anadirPieza() {
         // Crear un nuevo diálogo
@@ -74,19 +137,12 @@ public class AdminController {
 
         // Crear los campos de texto para los detalles de la pieza
         TextField idField = new TextField();
-        idField.setPromptText("ID");
         TextField nameField = new TextField();
-        nameField.setPromptText("Nombre");
         TextField numeroSerieField = new TextField();
-        numeroSerieField.setPromptText("Número de Serie");
         TextField fabricanteField = new TextField();
-        fabricanteField.setPromptText("Fabricante");
         TextField descripcionField = new TextField();
-        descripcionField.setPromptText("Descripción");
         TextField marcaVehiculoField = new TextField();
-        marcaVehiculoField.setPromptText("Marca del Vehículo");
         TextField modeloVehiculoField = new TextField();
-        modeloVehiculoField.setPromptText("Modelo del Vehículo");
 
         // Agregar los campos de texto al diálogo
         GridPane grid = new GridPane();
@@ -117,7 +173,7 @@ public class AdminController {
         // Mostrar el diálogo y esperar a que el usuario cierre el diálogo
         Optional<Pieza> result = dialog.showAndWait();
 
-        // Añadir la nueva pieza a la base de datos y actualizar la tabla si el usuario presionó el botón Añadir
+        // Añadir la pieza a la base de datos y actualizar la tabla si el usuario presionó el botón Añadir
         result.ifPresent(pieza -> {
             dbManager.addPiece(pieza);
             showPieces();

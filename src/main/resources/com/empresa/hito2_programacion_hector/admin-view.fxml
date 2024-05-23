@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="949.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.empresa.hito2_programacion_hector.AdminController" stylesheets="@styles.css">    <top>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="949.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.empresa.hito2_programacion_hector.AdminController">    <top>
         <AnchorPane prefHeight="92.0" prefWidth="949.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
             <children>
                 <Label layoutX="354.0" layoutY="23.0" text="Mecánico Manolo">
@@ -29,7 +29,7 @@
         </AnchorPane>
     </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="imgCubo" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
              <Button fx:id="buttonGoToAppView" layoutX="743.0" layoutY="75.0" mnemonicParsing="false" text="Volver a la App" textAlignment="CENTER">
                  <font>
@@ -72,6 +72,11 @@
                   <Font name="Bell MT Bold" size="14.0" />
                </font>
             </Button>
+            <ImageView fx:id="imgCuboBasura" fitHeight="62.0" fitWidth="58.0" layoutX="556.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/1400390.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>
