@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="949.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.empresa.hito2_programacion_hector.AdminController" stylesheets="@styles.css">    <top>
+        <AnchorPane prefHeight="92.0" prefWidth="949.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="354.0" layoutY="23.0" text="Mecánico Manolo">
+                    <font>
+                        <Font name="Bell MT Italic" size="36.0" />
+                    </font>
+                </Label>
+                <Circle fill="WHITE" layoutX="104.0" layoutY="45.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
+                <ImageView fitHeight="71.0" fitWidth="77.0" layoutX="69.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../img/11874.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="744.0" layoutY="58.0" text="Realizado por Héctor Olivera ©">
+                    <font>
+                        <Font name="Bell MT Bold" size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+             <Button fx:id="buttonGoToAppView" layoutX="743.0" layoutY="75.0" mnemonicParsing="false" text="Volver a la App" textAlignment="CENTER">
+                 <font>
+                     <Font name="Bell MT" size="14.0" />
+                 </font>
+             </Button>
+             <TableView fx:id="adminPiecesTableView" layoutX="78.0" layoutY="182.0" prefHeight="200.0" prefWidth="830.0">
+                 <columns>
+                     <TableColumn fx:id="adminIdColumn" text="ID" />
+                     <TableColumn fx:id="adminNameColumn" text="Nombre" />
+                     <TableColumn fx:id="adminNumeroSerieColumn" text="Número de Serie" />
+                     <TableColumn fx:id="adminFabricanteColumn" text="Fabricante" />
+                     <TableColumn fx:id="adminDescripcionColumn" text="Descripción" />
+                     <TableColumn fx:id="adminMarcaVehiculoColumn" text="Marca del Vehículo" />
+                     <TableColumn fx:id="adminModeloVehiculoColumn" text="Modelo del Vehículo" />
+                 </columns>
+             </TableView>
+            <Label layoutX="88.0" layoutY="73.0" text="Bienvenidos a la zona de Administración" underline="true">
+               <font>
+                  <Font name="Bell MT" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonModificarPieza" layoutX="439.0" layoutY="482.0" mnemonicParsing="false" style="-fx-background-color: orange;" text="Modificar Pieza">
+               <font>
+                  <Font name="Bell MT" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonEliminarPieza" layoutX="707.0" layoutY="482.0" mnemonicParsing="false" style="-fx-background-color: red;" text="Eliminar Pieza">
+               <font>
+                  <Font name="Bell MT Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="88.0" layoutY="136.0" text="Selecciona una pieza para Modificar o Eliminarla">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonAnadirPieza" layoutX="170.0" layoutY="482.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Añadir Pieza">
+               <font>
+                  <Font name="Bell MT Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

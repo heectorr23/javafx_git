@@ -1,0 +1,32 @@
+.table-view {
+    -fx-background-color: #f8f8f8;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 5px;
+}
+
+.table-row-cell {
+    -fx-border-color: lightgray;
+}
+
+.table-column {
+    -fx-background-color: #bfc2c7;
+}
+
+.table-cell {
+    -fx-text-fill: #2a2b2d;
+    -fx-padding: 5px;
+    -fx-border-color: lightgray;
+}
+.button {
+    -fx-background-color: #007BFF; /* Blue */
+    -fx-text-fill: white;
+    -fx-cursor: pointer;
+}
+
+.button:hover {
+    -fx-background-color: #0056b3;
+}
+
+.button:pressed {
+    -fx-background-color: #003d80;
+}
